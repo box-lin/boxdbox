@@ -1,5 +1,6 @@
 package com.test;
 
+import com.model.HuffmanTable;
 import com.model.HuffmanTree;
 import com.model.Node;
 
@@ -16,7 +17,10 @@ public class Demo {
 		
 		HuffmanTree tree = new HuffmanTree(bytes);
 //		System.out.println(tree.getNodeList());
-		tree.preorderPrint();
+//		tree.preorderPrint();
+		
+		HuffmanTable table = new HuffmanTable(tree);
+		table.printTable();
 		
 	}
 	
