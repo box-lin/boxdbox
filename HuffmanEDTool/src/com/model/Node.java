@@ -37,7 +37,7 @@ public class Node implements Comparable<Node>{
 	 */
 	@Override
 	public String toString() {
-		return null;
+		return "Node {data=" + this.data + ", frequency=" + this.frequency +"}";
 		
 	}
 }
