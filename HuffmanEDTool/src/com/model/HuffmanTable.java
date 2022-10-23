@@ -1,5 +1,6 @@
 package com.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +9,7 @@ import java.util.Map;
  * We need a HuffMan Tree to get HuffMan Code.
  *
  */
-public class HuffmanTable {
+public class HuffmanTable implements Serializable{
 	
 	//byte pair to HuffMan code
 	private Map<Byte, String> huffmanCodeTable;
@@ -19,6 +20,11 @@ public class HuffmanTable {
 	}
 	
 	
+	/**
+	 * 
+	 * @param hmTree
+	 * @return
+	 */
 	private Map<Byte, String> buildHuffmanCodes(HuffmanTree hmTree) {
 		Map<Byte, String> hmTable = new HashMap<Byte, String>();
 		Node root = hmTree.getRoot();
@@ -26,6 +32,12 @@ public class HuffmanTable {
 		return hmTable;
 	}
 	
+	/**
+	 * 
+	 * @param node
+	 * @param code
+	 * @param hmTable
+	 */
 	private void dfs(Node node, String code, Map<Byte, String> hmTable) {
 		if (node.left == null && node.right == null) {
 			hmTable.put(node.data, code);
@@ -40,6 +52,18 @@ public class HuffmanTable {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public Map<Byte, String> getHuffmanCodeTable(){
+		return this.huffmanCodeTable;
+	}
+	
+	
+	/**
+	 * 
+	 */
 	public void printTable() {
 		for (Map.Entry<Byte, String> entry: this.huffmanCodeTable.entrySet()) {
 			

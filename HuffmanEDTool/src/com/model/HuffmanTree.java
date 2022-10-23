@@ -69,7 +69,7 @@ public class HuffmanTree {
 			Node curnode = new Node(entry.getKey(), entry.getValue());
 			nodeList.add(curnode);
 		}
-		return nodeList;
+		return nodeList; 
 		
 	}
 	/**
