@@ -12,10 +12,11 @@ import com.model.HuffmanTree;
 import com.model.Node;
 import com.model.Packet;
 import com.model.SecretPass;
+import com.controller.Hasher;
 
 public class Demo {
 
-	public static void main(String[] args) throws IOException, ClassNotFoundException {
+	public static void main(String[] args) throws Exception {
 //		Byte data = 1;
 //		Node node = new Node(data, 5);
 ////		System.out.println(node.toString());
@@ -32,8 +33,11 @@ public class Demo {
 //		table.printTable();
 		
 //		TestObjectStream();
-		readObject();
-		
+//		readObject();
+		Hasher hasher = new Hasher("abc123");
+		System.out.println(hasher.getHashPassword());
+		Hasher hasher2 = new Hasher("abc123");
+		System.out.println(hasher2.getHashPassword());
 	}
 	
 	
