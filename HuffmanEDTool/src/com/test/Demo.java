@@ -42,20 +42,23 @@ public class Demo {
 		byte [] bytes = content.getBytes();
 		HuffmanTree tree = new HuffmanTree(bytes);
 		HuffmanTable table = new HuffmanTable(tree);
-		SecretPass s = new SecretPass();
-		Packet p = new Packet(table,s);
-		writeObj(p);
 		
+		table.printTable();
+		
+//		SecretPass s = new SecretPass();
+//		Packet p = new Packet(table,s);
+//		writeObj(p);
+//		
 	}
 	
 	public static void writeObj(Packet p) throws IOException, IOException {
-		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("like.txt"));
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("test1.txt"));
 		oos.writeObject(p);
 		oos.close();
 	}
 	
 	public static void readObject() throws IOException, IOException, ClassNotFoundException {
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("like.txt"));
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("test1.txt"));
 		Packet obj = (Packet)ois.readObject();
 		HuffmanTable tb = obj.getTable();
 		SecretPass s = obj.getSec();
