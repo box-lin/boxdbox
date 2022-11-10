@@ -26,7 +26,7 @@ public class Encrypter {
 	public Encrypter(String secretKey, String inputPath) {
 		
 		this.hasher = new Hasher(secretKey);
-		this.hfByteBuilder = new HfByteBuilder(inputPath);
+//		this.hfByteBuilder = new HfByteBuilder(inputPath);
 		this.buildPacket();
 		
 	}
