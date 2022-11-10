@@ -1,7 +1,6 @@
 package com.model;
 
 import java.io.Serializable;
-import java.security.*;
 
 public class SecretPass implements Serializable{
 	
@@ -9,15 +8,15 @@ public class SecretPass implements Serializable{
 	public String pass = "abd";
 	
 	
-	private String password;
+	private String hashedPassword;
 	
 	
-	public SecretPass(String password) {
-		this.password = password;
+	public SecretPass(String hashedPassword) {
+		this.hashedPassword = hashedPassword;
 	}
 	
 	public String getMyHashedPassword() {
-		return this.password;
+		return this.hashedPassword;
 	}
 	
 

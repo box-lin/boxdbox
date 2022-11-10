@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
 
 import com.model.HuffmanTable;
 import com.model.HuffmanTree;
@@ -13,6 +14,7 @@ import com.model.Node;
 import com.model.Packet;
 import com.model.SecretPass;
 import com.controller.Hasher;
+import com.controller.HfByteBuilder;
 
 public class Demo {
 
@@ -22,8 +24,10 @@ public class Demo {
 ////		System.out.println(node.toString());
 //		
 //		
-//		String content = "i like like like java do you like a java";
-//		byte [] bytes = content.getBytes();
+		String content = "i like like like java do you like a java";
+		byte [] bytes = content.getBytes();
+		HfByteBuilder hb = new HfByteBuilder(bytes);
+		System.out.println(Arrays.toString(hb.getHuffmanBytese()));
 //		
 //		HuffmanTree tree = new HuffmanTree(bytes);
 ////		System.out.println(tree.getNodeList());
@@ -34,10 +38,10 @@ public class Demo {
 		
 //		TestObjectStream();
 //		readObject();
-		Hasher hasher = new Hasher("abc123");
-		System.out.println(hasher.getHashPassword());
-		Hasher hasher2 = new Hasher("abc123");
-		System.out.println(hasher2.getHashPassword());
+//		Hasher hasher = new Hasher("abc123");
+//		System.out.println(hasher.getHashPassword());
+//		Hasher hasher2 = new Hasher("abc123");
+//		System.out.println(hasher2.getHashPassword());
 	}
 	
 	

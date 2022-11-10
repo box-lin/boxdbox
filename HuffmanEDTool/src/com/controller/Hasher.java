@@ -3,7 +3,14 @@ package com.controller;
 import java.security.MessageDigest;
 
  
- 
+/**
+ * 
+ * @author boxianglin
+ * 
+ * Hasher wrapper utilize java.security package
+ * This is SHA-256 hasher
+ *
+ */
 public class Hasher {
 	
 	private byte[] passBytes;
@@ -14,6 +21,12 @@ public class Hasher {
 		this.passBytes = passString.getBytes();
 	}
 	
+	
+	/**
+	 * 
+	 * 
+	 * @return string representation for hex. If empty string, error can be found in printStackTrace.
+	 */
 	public String getHashPassword(){
 		
 		String hashedPassword = "";
@@ -37,10 +50,7 @@ public class Hasher {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 		return hashedPassword;
-	 
 	}
 }
 
