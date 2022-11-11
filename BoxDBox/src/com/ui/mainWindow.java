@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
@@ -29,6 +30,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 public class mainWindow {
 
@@ -68,6 +70,7 @@ public class mainWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(mainWindow.class.getResource("/img/icon.png")));
 		frame.setBounds(100, 100, 453, 339);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -76,6 +79,10 @@ public class mainWindow {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Description", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+	 
+		
+		
+		
 		
 		JLabel lblNewLabel_1 = new JLabel("Input Directory: ");
 		
@@ -132,11 +139,15 @@ public class mainWindow {
 		);
 		
 		JLabel lblNewLabel = new JLabel("@Box and unBox your file through HuffmanCode and SHA256 ");
+		ImageIcon name = new ImageIcon("/img/name.png");
+		lblNewLabel.setIcon(name);
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		panel_1.add(lblNewLabel);
 		
 		JButton encryptBtn = new JButton("Box File");
+		encryptBtn.setIcon(new ImageIcon(mainWindow.class.getResource("/img/box.png")));
 		JButton decryptBtn = new JButton("Unbox File");
+		decryptBtn.setIcon(new ImageIcon(mainWindow.class.getResource("/img/unbox.png")));
 		encryptBtn.setEnabled(false);
 		encryptBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -190,6 +201,7 @@ public class mainWindow {
 		decryptBtn.setEnabled(false);
 		
 		JButton loadFileBtn = new JButton("Load File");
+		loadFileBtn.setIcon(new ImageIcon(mainWindow.class.getResource("/img/add.png")));
 		loadFileBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -222,6 +234,7 @@ public class mainWindow {
 		});
 		
 		JLabel lblNewLabel_2 = new JLabel("Enter Secrete Key");
+		lblNewLabel_2.setIcon(new ImageIcon(mainWindow.class.getResource("/img/password.png")));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -263,6 +276,7 @@ public class mainWindow {
 		frame.setJMenuBar(menuBar);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("About us");
+		mntmNewMenuItem.setIcon(new ImageIcon(mainWindow.class.getResource("/img/about.png")));
 		menuBar.add(mntmNewMenuItem);
 
 	}
