@@ -1,65 +1,93 @@
 package com.controller;
 
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.model.HuffmanCode;
 import com.model.HuffmanTable;
+import com.model.Packet;
 
+/**
+ * 
+ * Decrypter unBox the .box file.
+ * 
+ * we deserialize the Packet from .box file.
+ * packet = {HuffmanTable, HuffmanCode, SecretPass}
+ * 
+ * 
+ * Validation Process: 
+ * 1. we must first validates packet is valid or not, 
+ * 	  if packet is not null that means this is a encrypted
+ *    file, since we can pull packet out from it.
+ * 
+ * 2. we then verify the password that user entered, through 
+ *    hashed(password) with SecrePass hashedPassword.
+ *    
+ * Decryption Process:
+ * 1. we replace the key:val pair of original HuffmanTable
+ * 2. we greedy iterate through HuffmanCode to find substr
+ *    that are in revHuffmanTable keys() using 2 pointers 
+ *    approach. 
+ * 
+ * 
+ * @author boxianglin
+ * @copyright @2022 
+ */
 public class Decrypter {
 	
+	private DeReader fr;
+	private DeWriter fw;
+	private String pass;
+
 	
-	private byte[] oriByteArr;
- 
-	public Decrypter(HuffmanTable hfTable, HuffmanCode hfcode) {
-		this.oriByteArr = this.decrypt( hfTable, hfcode);
+	public Decrypter(String inputPath, String outputPath, String pass) {
+		this.fr = new DeReader(inputPath);
+		this.fw = new DeWriter(outputPath);
+		this.pass = pass;
+		
 	}
 	
 	/**
-	 * [BE CARFUL]
-	 * 
-	 *  String sbyte = "011";
-     *  byte b = (byte)Integer.parseInt(sbyte, 2);
-     *  int binary = b;
-     *  String snew = Integer.toBinaryString(binary);
-     *  System.out.println(snew);
-	 *  >> "11"  
-	 *  
-	 *  1. byte is signed. A positive byte convert to a string lose its prefix 0s.
-	 *  2. A negative byte convert to a string turns out to be a length of 32 filled with prefix 1s.
-	 *  
-	 *  WHAT TO DO?
-	 *  Suppose given a byte[] B with length N 
-	 *  for i in [0, N-2] we got 2 cases to consider 
-	 *  	1. B[i] is negative, we want have to get the substring of 8 least significant bits 
-	 *  	2. B[i] is positive, we have to filled the prefix 0 up to length 8 
-	 *  
-	 *  WARNING!
-	 *  for B[N-1], meaning the last byte, is not necessary to be a length of 8 originally.
-	 *  why? please refer HfByteBuilder.java line 39
-	 *  
-	 *  That said, length of B[N-1] <= 8, two possibilities, length equals to 8 or less than 8
-	 *  Suppose length is equal to 8, similar to above logic:
-	 *  	If B[N-1] is positive, we have to filled the prefix 0 up to length 8
-	 *  	If B[N-1] is negative, we want have to get the substring of 8 least significant bits 
-	 * 	
-	 *  Now, suppose length is less than 8 
-	 *  	ONLY CASE AND ONLY POSITIVE: 1011b=11d, 010b=2d --> ALL POSITIVE
-	 *  	BUT continuous prefix of 0 will be ignored, 0001 to 1, 00001 to 1 000001 to 1.
-	 *  	So ended up with two cases:
-	 *  		1. if prefix starts with 1, all good no need to do anything
-	 *  		2. if prefix starts with 0, how to know how many 0s need to be recover???
-	 *  
-	 *  SOLUTION: hfcode deserialized and provided as input!. 	
-	 *  
-	 *  
-	 * @param byteArr
-	 * @param hfTable
+	 * unBox decrypts the file  
+	 * @return
 	 */
-	public byte[] decrypt(HuffmanTable hfTable, HuffmanCode hfcode) {
+	public boolean unBox() {
+		Packet packet = fr.readPacket();
+		if (!this.validation(packet)) {
+			return false;
+		}
+		
+		HuffmanCode hfcode = packet.getHuffmanCode();
+		HuffmanTable hfTable = packet.getHuffmanTable();
+		
+
+		byte[] oriByteArr = decrypt(hfTable, hfcode);
+		fw.writeFile(oriByteArr);
+		
+		return true;
+	}
+	
+	/**
+	 * validation valid the encrypted file and password.
+	 * @param packet
+	 * @return is valid or not valid
+	 */
+	private boolean validation(Packet packet) {
+		if (packet == null) return false;
+		String hashedPass = packet.getSecretPass().getMyHashedPassword();
+		return new Hasher(this.pass).getHashPassword().equals(hashedPass);
+	}
+	
+	
+	/**
+	 * decrypt uses hfTable and hfcode to retreive the original byte array.
+	 * @param hfTable
+	 * @param hfcode
+	 * @return original byte array.
+	 */
+	private byte[] decrypt(HuffmanTable hfTable, HuffmanCode hfcode) {
 		// reverse hfTable
 		Map<String, Byte> revHuffmanTable = new HashMap<String, Byte>();
 		for(Map.Entry<Byte, String> entry: hfTable.getHuffmanCodeTable().entrySet()  ){
@@ -83,12 +111,8 @@ public class Decrypter {
 		for (int i=0; i < oriByteArr.length; i++) {
 			oriByteArr[i] = oriByteList.get(i);
 		}
-		return oriByteArr;
-		
+		return oriByteArr;	
 	}
-	
-	public byte[] getOriByteArr() {
-		return this.oriByteArr;
-	}
+	 
 	 
 }

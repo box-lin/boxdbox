@@ -68,8 +68,10 @@ public class Demo {
 	}
 	
 	public static void TestEncrypter() {
-		Encrypter en = new Encrypter("like.txt", "like.box", "123");
-		en.box();
+//		Encrypter en = new Encrypter("i.png", "i.box", "123");
+//		en.box();
+		Decrypter de = new Decrypter("i.box", "iback.png", "123");
+		de.unBox();
 	}
 	
 	public static void TetDecrypter() {
@@ -86,10 +88,7 @@ public class Demo {
 		HuffmanTable hfTable = new HuffmanTable(hfTree);
 		HuffmanCode hfcode = new HuffmanCode(hfTable, bytes);
 		
-		Decrypter d = new Decrypter(hfTable, hfcode);
-		System.out.println(Arrays.toString(d.getOriByteArr()));
-		String orstr = new String(d.getOriByteArr());
-		System.out.println(orstr);
+ 
 	}
 	
 	

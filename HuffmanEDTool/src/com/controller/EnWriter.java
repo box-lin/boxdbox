@@ -25,6 +25,13 @@ public class EnWriter {
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				os.close();
+				oos.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
