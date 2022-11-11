@@ -8,6 +8,7 @@ public class HfByteBuilder {
 	
 	private byte [] hfByteArr; 
 	private HuffmanCode hfcode;
+	private HuffmanTable hfTable;
  
 	
 	public HfByteBuilder(byte [] byteArray) {
@@ -23,7 +24,7 @@ public class HfByteBuilder {
 	 */
 	private byte[] build(byte[] byteArray) {
 		HuffmanTree hfTree = new HuffmanTree(byteArray);
-		HuffmanTable hfTable = new HuffmanTable(hfTree);
+		this.hfTable = new HuffmanTable(hfTree);
 		this.hfcode = new HuffmanCode(hfTable, byteArray);
 		
 		//then we have to make it into byte, signed!
@@ -44,5 +45,13 @@ public class HfByteBuilder {
 	
 	public byte[] getHuffmanBytes() {
 		return this.hfByteArr;
+	}
+	
+	public HuffmanTable getHuffmanTable() {
+		return this.hfTable;
+	}
+	
+	public HuffmanCode getHuffmanCode() {
+		return this.hfcode;
 	}
 }

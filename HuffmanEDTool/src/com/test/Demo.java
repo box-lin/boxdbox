@@ -79,7 +79,7 @@ public class Demo {
 		HuffmanTable hfTable = new HuffmanTable(hfTree);
 		HuffmanCode hfcode = new HuffmanCode(hfTable, bytes);
 		
-		Decrypter d = new Decrypter(bytes, hfTable, hfcode);
+		Decrypter d = new Decrypter(hfTable, hfcode);
 		System.out.println(Arrays.toString(d.getOriByteArr()));
 		String orstr = new String(d.getOriByteArr());
 		System.out.println(orstr);

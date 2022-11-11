@@ -21,7 +21,6 @@ public class Hasher {
 		this.passBytes = passString.getBytes();
 	}
 	
-	
 	/**
 	 * 
 	 * 

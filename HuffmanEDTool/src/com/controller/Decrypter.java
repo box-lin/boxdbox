@@ -14,8 +14,8 @@ public class Decrypter {
 	
 	private byte[] oriByteArr;
  
-	public Decrypter(byte[] byteArr, HuffmanTable hfTable, HuffmanCode hfcode) {
-		this.oriByteArr = this.decrypt(byteArr, hfTable, hfcode);
+	public Decrypter(HuffmanTable hfTable, HuffmanCode hfcode) {
+		this.oriByteArr = this.decrypt( hfTable, hfcode);
 	}
 	
 	/**
@@ -53,13 +53,13 @@ public class Decrypter {
 	 *  		1. if prefix starts with 1, all good no need to do anything
 	 *  		2. if prefix starts with 0, how to know how many 0s need to be recover???
 	 *  
-	 *  SOLUTION: hfcode deserialized. 	
+	 *  SOLUTION: hfcode deserialized and provided as input!. 	
 	 *  
 	 *  
 	 * @param byteArr
 	 * @param hfTable
 	 */
-	public byte[] decrypt(byte[] byteArr, HuffmanTable hfTable, HuffmanCode hfcode) {
+	public byte[] decrypt(HuffmanTable hfTable, HuffmanCode hfcode) {
 		// reverse hfTable
 		Map<String, Byte> revHuffmanTable = new HashMap<String, Byte>();
 		for(Map.Entry<Byte, String> entry: hfTable.getHuffmanCodeTable().entrySet()  ){
@@ -79,7 +79,6 @@ public class Decrypter {
 			}
 		}
 		
-		
 		byte[] oriByteArr = new byte[ oriByteList.size()];
 		for (int i=0; i < oriByteArr.length; i++) {
 			oriByteArr[i] = oriByteList.get(i);
@@ -91,7 +90,5 @@ public class Decrypter {
 	public byte[] getOriByteArr() {
 		return this.oriByteArr;
 	}
-	
-	
- 
+	 
 }

@@ -4,10 +4,6 @@ import java.io.Serializable;
 
 public class SecretPass implements Serializable{
 	
-	
-	public String pass = "abd";
-	
-	
 	private String hashedPassword;
 	
 	
