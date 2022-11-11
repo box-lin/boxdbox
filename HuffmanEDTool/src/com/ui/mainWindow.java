@@ -12,20 +12,33 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.JProgressBar;
 import javax.swing.border.TitledBorder;
+
+import com.controller.Decrypter;
+import com.controller.Encrypter;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JPasswordField;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class mainWindow {
 
 	private JFrame frame;
-	private JTextField txtDsadas;
+	private JTextField inputDirText;
 	private JPasswordField passwordField;
-	private JTextField textField;
+	private JTextField outputDirText;
+	
+
+	 
 
 	/**
 	 * Launch the application.
@@ -64,21 +77,21 @@ public class mainWindow {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Description", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
-		JLabel lblNewLabel_1 = new JLabel("File Directory: ");
+		JLabel lblNewLabel_1 = new JLabel("Input Directory: ");
 		
-		txtDsadas = new JTextField();
-		txtDsadas.setToolTipText("");
-		txtDsadas.setEnabled(false);
-		txtDsadas.setEditable(false);
-		txtDsadas.setColumns(10);
+		inputDirText = new JTextField();
+		inputDirText.setToolTipText("");
+		inputDirText.setEnabled(false);
+		inputDirText.setEditable(false);
+		inputDirText.setColumns(10);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Ouput Directory: ");
 		
-		textField = new JTextField();
-		textField.setToolTipText("");
-		textField.setEnabled(false);
-		textField.setEditable(false);
-		textField.setColumns(10);
+		outputDirText = new JTextField();
+		outputDirText.setToolTipText("");
+		outputDirText.setEnabled(false);
+		outputDirText.setEditable(false);
+		outputDirText.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -96,8 +109,8 @@ public class mainWindow {
 								.addComponent(lblNewLabel_1))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtDsadas, 293, 293, 293))))
+								.addComponent(outputDirText, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
+								.addComponent(inputDirText, 293, 293, 293))))
 					.addGap(17))
 		);
 		groupLayout.setVerticalGroup(
@@ -110,25 +123,103 @@ public class mainWindow {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_1)
-						.addComponent(txtDsadas, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(inputDirText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_1_1)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(outputDirText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(15))
 		);
 		
-		JLabel lblNewLabel = new JLabel("Encrypt your file into .box and reduce your file size! (Two Factors)");
+		JLabel lblNewLabel = new JLabel("@Box and unBox your file through HuffmanCode and SHA256 ");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		panel_1.add(lblNewLabel);
 		
-		JButton encryptBtn = new JButton("Start Encrypt");
+		JButton encryptBtn = new JButton("Box File");
+		JButton decryptBtn = new JButton("Unbox File");
+		encryptBtn.setEnabled(false);
+		encryptBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Specify a file to save");
+				int status = fileChooser.showSaveDialog(encryptBtn);
+				if (status == JFileChooser.APPROVE_OPTION) {
+					String outPath = fileChooser.getSelectedFile().getAbsolutePath();
+					outputDirText.setText(outPath);
+					
+					String inPath = inputDirText.getText();
+					String password = passwordField.getText();
+					Encrypter en = new Encrypter(inPath, outPath, password);
+					en.box();	
+					
+					// reset passwordField
+					passwordField.setText(null);
+					encryptBtn.setEnabled(false);
+					decryptBtn.setEnabled(false);
+				}
+				
+			}
+		});
 		
-		JButton decryptBtn = new JButton("Start Decrypt");
+		decryptBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Specify a file to save");
+				int status = fileChooser.showSaveDialog(encryptBtn);
+				if (status == JFileChooser.APPROVE_OPTION) {
+					String outPath = fileChooser.getSelectedFile().getAbsolutePath();
+					String inPath = inputDirText.getText();
+					String password = passwordField.getText();
+					Decrypter de = new Decrypter(inPath, outPath, password);
+					boolean okUnBox = de.unBox();	
+					
+					if (!okUnBox) {
+						JOptionPane.showMessageDialog(null, "error: unable to unbox");
+						return;
+					}
+					
+					outputDirText.setText(outPath);
+					// reset passwordField
+					passwordField.setText(null);
+					encryptBtn.setEnabled(false);
+					decryptBtn.setEnabled(false);
+					
+				}
+			}
+		});
+		decryptBtn.setEnabled(false);
 		
 		JButton loadFileBtn = new JButton("Load File");
+		loadFileBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				outputDirText.setText(null);
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Specify a file to load");
+				int status = fileChooser.showOpenDialog(loadFileBtn);
+				
+				
+				if (status == JFileChooser.APPROVE_OPTION) {
+					String absPath = fileChooser.getSelectedFile().getAbsolutePath();
+					inputDirText.setText(absPath);
+					
+				} 
+			}
+		});
 		
 		passwordField = new JPasswordField();
+		passwordField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (passwordField.getPassword().length > 0 && inputDirText.getText().length() > 0) {
+					encryptBtn.setEnabled(true);
+					decryptBtn.setEnabled(true);
+				}else {
+					encryptBtn.setEnabled(false);
+					decryptBtn.setEnabled(false);
+				}
+			}
+		});
 		
 		JLabel lblNewLabel_2 = new JLabel("Enter Secrete Key");
 		GroupLayout gl_panel = new GroupLayout(panel);
@@ -173,5 +264,6 @@ public class mainWindow {
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("About us");
 		menuBar.add(mntmNewMenuItem);
+
 	}
 }
