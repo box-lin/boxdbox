@@ -27,7 +27,6 @@ public class EnReader {
 			try {
 				is.close();	
 			}catch(Exception e) {
-				
 				e.printStackTrace();
 				
 			}

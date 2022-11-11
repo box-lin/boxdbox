@@ -16,14 +16,16 @@ import com.model.Node;
 import com.model.Packet;
 import com.model.SecretPass;
 import com.controller.Decrypter;
+import com.controller.Encrypter;
 import com.controller.Hasher;
 import com.controller.HfByteBuilder;
 
 public class Demo {
 
 	public static void main(String[] args) throws Exception {
+		TestEncrypter();
 //		TestHfByteBuilder();
-		TetDecrypter();
+//		TetDecrypter();
 //		Byte data = 1;
 //		Node node = new Node(data, 5);
 ////		System.out.println(node.toString());
@@ -63,6 +65,11 @@ public class Demo {
 //		System.out.println(hasher.getHashPassword());
 //		Hasher hasher2 = new Hasher("abc123");
 //		System.out.println(hasher2.getHashPassword());
+	}
+	
+	public static void TestEncrypter() {
+		Encrypter en = new Encrypter("like.txt", "like.box", "123");
+		en.box();
 	}
 	
 	public static void TetDecrypter() {

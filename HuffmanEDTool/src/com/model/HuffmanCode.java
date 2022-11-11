@@ -1,6 +1,8 @@
 package com.model;
 
-public class HuffmanCode {
+import java.io.Serializable;
+
+public class HuffmanCode implements Serializable {
 	
 	private String huffmanCode;
 	
@@ -17,7 +19,7 @@ public class HuffmanCode {
 		for (byte b: byteArr) {
 			sb.append(hfTable.getHuffmanCodeTable().get(b));
 		}
-		System.out.println("huffman code str " + sb.toString() );
+
 		return sb.toString();
 	}
 	

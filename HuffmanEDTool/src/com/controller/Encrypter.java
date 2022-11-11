@@ -32,7 +32,7 @@ public class Encrypter {
 					 ) {
 		
 		this.fr = new EnReader(inputPath);
-		this.fo = new EnWriter(inputPath);
+		this.fo = new EnWriter(outputPath);
 		this.hasher = new Hasher(secretKey);
 		this.hfByteBuilder = new HfByteBuilder(this.fr.readByteArr()); 		
 	}
@@ -40,7 +40,7 @@ public class Encrypter {
 	/**
 	 * 
 	 */
-	public void zip() {		
+	public void box() {		
 		// pack the packet
 		Packet packet = this.packThePacket();
 		fo.writeFile(packet); 
