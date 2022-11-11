@@ -1,4 +1,10 @@
-# HuffmanE-DTool
+<div id="top" align="center">   
+  
+  ![](Document/name.png)
+  
+</div>
+
+---
 
 **Description:** Multi-factor customized Encryption and Decryption technique employes the `Huffman Coding Algorithm` and `Hashing` 
 
