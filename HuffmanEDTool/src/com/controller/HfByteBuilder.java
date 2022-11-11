@@ -7,6 +7,7 @@ import com.model.HuffmanTable;
 public class HfByteBuilder {
 	
 	private byte [] hfByteArr; 
+	private HuffmanCode hfcode;
  
 	
 	public HfByteBuilder(byte [] byteArray) {
@@ -23,7 +24,7 @@ public class HfByteBuilder {
 	private byte[] build(byte[] byteArray) {
 		HuffmanTree hfTree = new HuffmanTree(byteArray);
 		HuffmanTable hfTable = new HuffmanTable(hfTree);
-		HuffmanCode hfcode = new HuffmanCode(hfTable, byteArray);
+		this.hfcode = new HuffmanCode(hfTable, byteArray);
 		
 		//then we have to make it into byte, signed!
 		String huffmancodeStr = hfcode.getHuffmanCode();

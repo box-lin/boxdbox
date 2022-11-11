@@ -46,7 +46,7 @@ public class HuffmanTree {
 	 * @param byteArray
 	 * @return
 	 */
-    private Map<Byte, Integer> getByteFrequencies(byte [] byteArray){
+	private Map<Byte, Integer> getByteFrequencies(byte [] byteArray){
 		Map<Byte, Integer> freqTable = new HashMap<Byte, Integer>();
 		for (byte by:byteArray) {
 			Integer frequency = freqTable.getOrDefault(by, 0);

@@ -4,19 +4,27 @@ import java.io.Serializable;
 
 public class Packet implements Serializable{
 	
-	HuffmanTable hmTable;
-	SecretPass sec;
+	private HuffmanTable hmTable;
+	private SecretPass sec;
+	private HuffmanCode hmCode;
 	
-	public Packet(HuffmanTable hmTable, SecretPass sec) {
+	public Packet(HuffmanTable hmTable, HuffmanCode hmCode, SecretPass sec) {
 		this.hmTable = hmTable;
+		this.hmCode = hmCode;
 		this.sec = sec;
 	}
 	
-	public HuffmanTable getTable() {
+	public HuffmanTable getHuffmanTable() {
 		return this.hmTable;
 	}
 	
-	public SecretPass getSec() {
+	public SecretPass getSecretPass() {
 		return this.sec;
 	}
+	
+	public HuffmanCode getHuffmanCode() {
+		return this.hmCode;
+	}
+	
+	
 }

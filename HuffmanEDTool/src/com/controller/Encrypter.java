@@ -14,8 +14,13 @@ import com.model.Packet;
  */
 public class Encrypter {
 	
-	private Packet packet;
+	//packet = hashed, hfTable, hfCode
+	private Packet packet; 
+	
+	//hasher for hashed SHA256
 	private Hasher hasher;
+	
+	//hfByteBuilder contains hfCode and hfBytes
 	private HfByteBuilder hfByteBuilder;
 	
 	/**
@@ -23,9 +28,11 @@ public class Encrypter {
 	 * @param secretKey
 	 * @param filePath
 	 */
-	public Encrypter(String secretKey, String inputPath) {
+	public Encrypter(String secretKey, byte[] byteArray) {
 		
 		this.hasher = new Hasher(secretKey);
+		this.hfByteBuilder = new HfByteBuilder(byteArray); 
+		
 //		this.hfByteBuilder = new HfByteBuilder(inputPath);
 		this.buildPacket();
 		

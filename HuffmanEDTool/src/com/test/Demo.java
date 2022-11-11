@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.Base64;
 
+import com.model.HuffmanCode;
 import com.model.HuffmanTable;
 import com.model.HuffmanTree;
 import com.model.Node;
@@ -21,7 +22,8 @@ import com.controller.HfByteBuilder;
 public class Demo {
 
 	public static void main(String[] args) throws Exception {
-		TestHfByteBuilder();
+//		TestHfByteBuilder();
+		TetDecrypter();
 //		Byte data = 1;
 //		Node node = new Node(data, 5);
 ////		System.out.println(node.toString());
@@ -63,6 +65,26 @@ public class Demo {
 //		System.out.println(hasher2.getHashPassword());
 	}
 	
+	public static void TetDecrypter() {
+		String content = "i like like like java do you like a java";
+		byte [] bytes = content.getBytes();
+		System.out.println(Arrays.toString(bytes));
+		
+		HfByteBuilder hb = new HfByteBuilder(bytes);
+		byte [] newbytes = hb.getHuffmanBytes();
+		 
+		
+		
+		HuffmanTree hfTree = new HuffmanTree(bytes);
+		HuffmanTable hfTable = new HuffmanTable(hfTree);
+		HuffmanCode hfcode = new HuffmanCode(hfTable, bytes);
+		
+		Decrypter d = new Decrypter(bytes, hfTable, hfcode);
+		System.out.println(Arrays.toString(d.getOriByteArr()));
+		String orstr = new String(d.getOriByteArr());
+		System.out.println(orstr);
+	}
+	
 	
 	
 	public static void TestHfByteBuilder() {
@@ -94,15 +116,15 @@ public class Demo {
 		oos.close();
 	}
 	
-	public static void readObject() throws IOException, IOException, ClassNotFoundException {
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("test1.txt"));
-		Packet obj = (Packet)ois.readObject();
-		HuffmanTable tb = obj.getTable();
-		SecretPass s = obj.getSec();
-		tb.printTable();
-		System.out.println(s.pass);
-		ois.close();
-	}
+//	public static void readObject() throws IOException, IOException, ClassNotFoundException {
+//		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("test1.txt"));
+//		Packet obj = (Packet)ois.readObject();
+//		HuffmanTable tb = obj.getTable();
+//		SecretPass s = obj.getSec();
+//		tb.printTable();
+//		System.out.println(s.pass);
+//		ois.close();
+//	}
 	
 
 }
