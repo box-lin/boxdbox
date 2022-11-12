@@ -1,14 +1,20 @@
 <div id="top" align="center">   
   
   ![](Document/name.png)
-  
-</div>
+Two-factor customized Encryption and Decryption technique employes the **Huffman Coding Algorithm** and **SHA256 Hashing** 
 
+![](https://img.shields.io/badge/license-MIT-yellow.svg)
+![](https://img.shields.io/badge/language-java-pink.svg)
+![](https://img.shields.io/badge/build-passed-green.svg)
+![](https://img.shields.io/badge/software-released-blue.svg)
+![](https://img.shields.io/badge/document-ready-purple.svg)
+![](https://img.shields.io/badge/opensoure-yes-brown.svg) 
+</div>
+  
 ---
 
-**Description:** Multi-factor customized Encryption and Decryption technique employes the `Huffman Coding Algorithm` and `Hashing` 
-
-## Software Architecture
+ 
+## Software Architecture (OUTDATED, MODIFIED during implementation)
 ![](Document/HuffmanEDArch.drawio.png)
 
 ## Milestone 1
