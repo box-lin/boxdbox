@@ -1,7 +1,7 @@
 <div id="top" align="center">   
   
   ![](Document/name.png)
-Two-factor customized Encryption and Decryption technique employes the **Huffman Coding Algorithm** and **SHA256 Hashing** 
+Box and Unbox your file through **Huffman Coding Algorithm** and **SHA256 Hashing** 
 
 ![](https://img.shields.io/badge/license-MIT-yellow.svg)
 ![](https://img.shields.io/badge/language-java-pink.svg)
