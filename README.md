@@ -31,5 +31,7 @@ Box and Unbox your file through **Huffman Coding Algorithm** and **SHA256 Hashin
 - [x] Encryption Reader and Writer completed.
 - [x] Encrypter wrapper completed.
 - [x] Decrypter main algorithm that revert back to original back completed.
+- [x] MainWindow Action Listeners implemented.
+- [x] Icons for UI components added.
 
 
