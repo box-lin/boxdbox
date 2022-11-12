@@ -28,10 +28,15 @@ Box and Unbox your file through **Huffman Coding Algorithm** and **SHA256 Hashin
 - [x] Translated Byte Array from input file to Huffman Code string completed.
 - [x] Hashing with SHA256 completed.
 - [x] Object serialization completed, serialized a packet that consists of HuffmanTable, HuffmanCode, and SHA256Hashed Password.
-- [x] Encryption Reader and Writer completed.
-- [x] Encrypter wrapper completed.
-- [x] Decrypter main algorithm that revert back to original back completed.
-- [x] MainWindow Action Listeners implemented.
+- [x] Encryption Reader that reads bytes from the file completed.
+- [x] Encryption Writer that writes a packet to the file completed.
+- [x] Encrypter wrapper class completed.
+- [x] Decryption Reader that reads a packet from the file completed.
+- [x] Decryption Writer that writes original bytes to the file completed.
+- [x] Decryption algorithm that greedy compute the original byte from Huffmancode and Huffmantable completed.
+- [x] MainWindow Action Listeners for load, box, unbox buttons implemented.
+- [x] MainWindow Keyboard listeners for secrete key implemented.
 - [x] Icons for UI components added.
+
 
 
