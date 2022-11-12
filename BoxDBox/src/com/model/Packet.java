@@ -2,6 +2,11 @@ package com.model;
 
 import java.io.Serializable;
 
+/**
+ * Packet is very important. We will write this packet into the file.
+ * @author boxianglin
+ *
+ */
 public class Packet implements Serializable{
 	
 	private HuffmanTable hmTable;

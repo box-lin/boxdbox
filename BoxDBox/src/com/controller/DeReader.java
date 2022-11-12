@@ -6,6 +6,12 @@ import java.io.ObjectInputStream;
 
 import com.model.Packet;
 
+/**
+ * DeReader get an inputPath and read its packet, if any!
+ * 
+ * @author boxianglin
+ *
+ */
 public class DeReader {
 	
 	private String inputPath;
@@ -34,7 +40,7 @@ public class DeReader {
 				e.printStackTrace();
 			}
 		}
-		return packet;
+		return packet; //might be null if the file read did not encrypted by this software before.
 	}
 
 }

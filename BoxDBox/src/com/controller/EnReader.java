@@ -2,6 +2,13 @@ package com.controller;
 
 import java.io.FileInputStream;
 
+/**
+ * 
+ * EnReader gets inputPath and read the bytes from file.
+ * 
+ * @author boxianglin
+ *
+ */
 public class EnReader {
 	
 	private String inputPath;

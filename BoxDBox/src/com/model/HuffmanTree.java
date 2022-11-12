@@ -42,9 +42,9 @@ public class HuffmanTree {
 	}
 	
 	/**
-	 * 
+	 * a hashmap to track of frequency of each byte
 	 * @param byteArray
-	 * @return
+	 * @return freqTable
 	 */
 	private Map<Byte, Integer> getByteFrequencies(byte [] byteArray){
 		Map<Byte, Integer> freqTable = new HashMap<Byte, Integer>();
@@ -57,9 +57,9 @@ public class HuffmanTree {
 	}
     
     /**
-     * 
+     * a LinkedList contains a collection of node={byte,freq}
      * @param freqTable
-     * @return
+     * @return nodeList
      */
 	private LinkedList<Node> getNodeList(Map<Byte, Integer> freqTable){
 		

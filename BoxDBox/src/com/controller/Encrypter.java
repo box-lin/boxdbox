@@ -7,6 +7,14 @@ import com.model.SecretPass;
 
 /**
  * 
+ * Encrypter is a class wrap things up.
+ * 
+ * - EnReader
+ * - EnWriter
+ * - Hasher
+ * - HfByteBuilder
+ * 
+ * 
  * @author boxianglin
  *
  */
@@ -22,14 +30,14 @@ public class Encrypter {
 	private EnWriter fo;
 	
 	/**
-	 * 
+	 * An encrypter need a inputPath, outputPath, and a secretKey from user.
+	 * @param inputPath
+	 * @param outputPath
 	 * @param secretKey
-	 * @param filePath
 	 */
 	public Encrypter(String inputPath, 
 					 String outputPath, 
-					 String secretKey
-					 ) {
+					 String secretKey){
 		
 		this.fr = new EnReader(inputPath);
 		this.fo = new EnWriter(outputPath);
@@ -38,7 +46,7 @@ public class Encrypter {
 	}
 	
 	/**
-	 * 
+	 * box a input file and write a packet to the file.
 	 */
 	public void box() {		
 		// pack the packet
@@ -46,6 +54,11 @@ public class Encrypter {
 		fo.writeFile(packet); 
 	}
 	
+	
+	/**
+	 * packet SecretPass, HuffmanCode, HuffmanTable into a packet.
+	 * @return packet
+	 */
 	private Packet packThePacket() {
 		SecretPass secretPass = new SecretPass(this.hasher.getHashPassword());
 		HuffmanCode hfCode = this.hfByteBuilder.getHuffmanCode();

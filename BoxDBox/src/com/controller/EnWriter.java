@@ -5,6 +5,12 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import com.model.Packet;
 
+/**
+ * EnWriter gets a destPath and write the packet to file.
+ * 
+ * @author boxianglin
+ *
+ */
 public class EnWriter {
 	
 	private String destPath;

@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
+
+import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -26,10 +28,12 @@ import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JPasswordField;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.awt.Toolkit;
 
 public class mainWindow {
@@ -70,7 +74,7 @@ public class mainWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(mainWindow.class.getResource("/img/icon.png")));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(mainWindow.class.getResource("/img/appicon.jpg")));
 		frame.setBounds(100, 100, 453, 339);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -223,7 +227,7 @@ public class mainWindow {
 		passwordField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if (passwordField.getPassword().length > 0 && inputDirText.getText().length() > 0) {
+				if (passwordField.getText().length() > 0 && inputDirText.getText().length() > 0) {
 					encryptBtn.setEnabled(true);
 					decryptBtn.setEnabled(true);
 				}else {
@@ -275,8 +279,8 @@ public class mainWindow {
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("About us");
-		mntmNewMenuItem.setIcon(new ImageIcon(mainWindow.class.getResource("/img/about.png")));
+		JMenuItem mntmNewMenuItem = new JMenuItem("BoxDBox");
+		mntmNewMenuItem.setIcon(new ImageIcon(mainWindow.class.getResource("/img/appicon.jpg")));
 		menuBar.add(mntmNewMenuItem);
 
 	}

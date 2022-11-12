@@ -3,6 +3,12 @@ package com.controller;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
+/**
+ * DeWriter gets an outputPath and write the byte array into a file.
+ * 
+ * @author boxianglin
+ *
+ */
 public class DeWriter {
 	
 	private String outputPath;

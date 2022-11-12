@@ -4,6 +4,15 @@ import com.model.HuffmanTree;
 import com.model.HuffmanCode;
 import com.model.HuffmanTable;
 
+/**
+ * HfByteBuilder consists 
+ * - HuffmanCode
+ * - HuffmanTable
+ * - hyByteArr (useless now)
+ * 
+ * @author boxianglin
+ *
+ */
 public class HfByteBuilder {
 	
 	private byte [] hfByteArr; 

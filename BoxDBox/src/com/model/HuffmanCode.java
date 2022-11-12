@@ -2,6 +2,12 @@ package com.model;
 
 import java.io.Serializable;
 
+/**
+ * HuffmanCode is translated from HuffmanTable
+ * 
+ * @author boxianglin
+ *
+ */
 public class HuffmanCode implements Serializable {
 	
 	private String huffmanCode;

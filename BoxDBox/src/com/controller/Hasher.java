@@ -23,7 +23,6 @@ public class Hasher {
 	
 	/**
 	 * 
-	 * 
 	 * @return string representation for hex. If empty string, error can be found in printStackTrace.
 	 */
 	public String getHashPassword(){

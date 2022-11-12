@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+
 /**
  * HuffmanTable is a table to store the Byte and its HuffMan code.
- * We need a HuffMan Tree to get HuffMan Code.
+ * We need a HuffMan Tree to get HuffMan Table.
+ * 
+ * @author boxianglin
  *
  */
 public class HuffmanTable implements Serializable{
@@ -21,6 +24,7 @@ public class HuffmanTable implements Serializable{
 	
 	
 	/**
+	 * build the table by traversing the tree.
 	 * 
 	 * @param hmTree
 	 * @return
@@ -33,6 +37,9 @@ public class HuffmanTable implements Serializable{
 	}
 	
 	/**
+	 * helper of build table.
+	 * 
+	 * a string code keep track of the path, left=0, right=1
 	 * 
 	 * @param node
 	 * @param code
@@ -54,7 +61,7 @@ public class HuffmanTable implements Serializable{
 	
 	/**
 	 * 
-	 * @return
+	 * @return hashmap of huffmantable
 	 */
 	public Map<Byte, String> getHuffmanCodeTable(){
 		return this.huffmanCodeTable;
@@ -62,7 +69,7 @@ public class HuffmanTable implements Serializable{
 	
 	
 	/**
-	 * 
+	 * debug usage
 	 */
 	public void printTable() {
 		for (Map.Entry<Byte, String> entry: this.huffmanCodeTable.entrySet()) {
