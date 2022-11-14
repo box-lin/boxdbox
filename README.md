@@ -14,8 +14,8 @@ Box and Unbox your file through **Huffman Coding Algorithm** and **SHA256 Hashin
 ---
 
  
-## Software Architecture (OUTDATED, MODIFIED during implementation)
-![](Document/HuffmanEDArch.drawio.png)
+## Software Architecture
+![](Document/BoxDBox.png)
 
 ## Milestone 1
 - [x] Software Design
