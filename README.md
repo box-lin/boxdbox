@@ -38,5 +38,9 @@ Box and Unbox your file through **Huffman Coding Algorithm** and **SHA256 Hashin
 - [x] MainWindow Keyboard listeners for secrete key implemented.
 - [x] Icons for UI components added.
 
+## Major Subcomponents Description
+- **Packet Builder**
+  - Packet Builder build the Huffman Tree from the original byte array read from the input file. Then build the Huffman Table according to the Huffman Tree. Finally, build the Huffman Code String from Huffman Table and original byte array. Huffman Code String is the encoded string that describes the original byte array in a secret way.
+
 
 
