@@ -18,7 +18,7 @@ import com.model.SecretPass;
 import com.controller.Decrypter;
 import com.controller.Encrypter;
 import com.controller.Hasher;
-import com.controller.HfByteBuilder;
+import com.controller.PacketBuilder;
 
 public class Demo {
 
@@ -79,7 +79,7 @@ public class Demo {
 		byte [] bytes = content.getBytes();
 		System.out.println(Arrays.toString(bytes));
 		
-		HfByteBuilder hb = new HfByteBuilder(bytes);
+		PacketBuilder hb = new PacketBuilder(bytes);
 		byte [] newbytes = hb.getHuffmanBytes();
 		 
 		
@@ -96,7 +96,7 @@ public class Demo {
 	public static void TestHfByteBuilder() {
 		String content = "i like like like java do you like a java";
 		byte [] bytes = content.getBytes();
-		HfByteBuilder hb = new HfByteBuilder(bytes);
+		PacketBuilder hb = new PacketBuilder(bytes);
 		byte [] newbytes = hb.getHuffmanBytes();
 		System.out.println(Arrays.toString(hb.getHuffmanBytes()));
 	}

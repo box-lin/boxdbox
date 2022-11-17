@@ -13,14 +13,14 @@ import com.model.HuffmanTable;
  * @author boxianglin
  *
  */
-public class HfByteBuilder {
+public class PacketBuilder {
 	
 	private byte [] hfByteArr; 
 	private HuffmanCode hfcode;
 	private HuffmanTable hfTable;
  
 	
-	public HfByteBuilder(byte [] byteArray) {
+	public PacketBuilder(byte [] byteArray) {
 		this.hfByteArr = build(byteArray);		
 	}
 	

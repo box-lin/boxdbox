@@ -17,6 +17,9 @@ Box and Unbox your file through **Huffman Coding Algorithm** and **SHA256 Hashin
 ## Software Architecture
 ![](Document/newBox.drawio.png)
 
+## App Outlook
+![](Document/apppic.png)
+
 ## Milestone 1
 - [x] Software Design
 - [x] Graphical User Interfaces
